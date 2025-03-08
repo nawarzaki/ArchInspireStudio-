@@ -1,0 +1,460 @@
+/* Basic Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #F7F7F7;
+  color: #333;
+  line-height: 1.6;
+  padding-bottom: 50px;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Skip Link (visible on focus) */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #000;
+  color: #fff;
+  padding: 8px 16px;
+  z-index: 10000;
+  transition: top 0.3s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* Header */
+header {
+  background-color: #1E2A38;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Navigation */
+nav {
+  background-color: #1E2A38;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+nav ul li {
+  margin: 0 15px;
+}
+nav ul li a {
+  color: #fff;
+  padding: 10px 15px;
+  transition: background 0.3s, color 0.3s;
+}
+nav ul li a:hover,
+nav ul li a:focus {
+  background-color: #00AEEF;
+  color: #fff;
+}
+
+/* Global Search Section */
+#global-search-section {
+  text-align: center;
+  padding: 15px;
+  background-color: #e0e0e0;
+}
+#global-search {
+  width: 80%;
+  max-width: 400px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+#search-suggestions {
+  list-style: none;
+  margin-top: 5px;
+  padding-left: 0;
+  max-width: 400px;
+  margin: 10px auto 0;
+  text-align: left;
+}
+#search-suggestions li {
+  background-color: #fff;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  transition: background-color 0.3s;
+}
+#search-suggestions li:hover {
+  background-color: #00AEEF;
+  color: #fff;
+}
+
+/* Main Content Sections */
+main {
+  padding: 20px;
+}
+.sections-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.main-section {
+  background-color: #fff;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.main-section:hover,
+.main-section:focus {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Full-Screen Admin Panel Enhancements */
+.full-screen-admin {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #f7f7f7 0%, #e0e0e0 100%);
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  z-index: 1500;
+  overflow-y: auto;
+  padding: 30px;
+  display: none;
+  transition: opacity 0.3s ease;
+}
+.full-screen-admin[aria-hidden="false"] {
+  display: block;
+}
+
+/* Admin Panel Header */
+#admin-panel-header {
+  background: #333;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 8px 8px 0 0;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Admin Panel Body */
+.admin-panel-body {
+  background: #fff;
+  padding: 20px;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+}
+#admin-form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+#admin-form input,
+#admin-form select,
+#admin-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Dropzone Styles for Images */
+.dropzone {
+  border: 2px dashed #ccc;
+  padding: 20px;
+  text-align: center;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.dropzone.dragover {
+  background: #f0f0f0;
+}
+#image-previews {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+.preview {
+  border: 1px solid #ccc;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+.preview img {
+  max-width: 100px;
+  height: auto;
+  display: block;
+  margin-bottom: 5px;
+}
+/* Figcaption Inputs in Preview */
+.preview .figcaption-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.preview .figcaption-inputs input[type="text"],
+.preview .figcaption-inputs input[type="color"] {
+  padding: 4px;
+  font-size: 0.9rem;
+}
+
+/* Live Preview Styles */
+#live-preview-container {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  border-radius: 4px;
+}
+#live-preview-container h4 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #333;
+}
+#live-preview {
+  min-height: 150px;
+  padding: 10px;
+  background: #fff;
+  border: 1px dashed #ddd;
+  border-radius: 4px;
+  overflow-y: auto;
+}
+
+/* Dynamic Sidebar Enhancements */
+.dynamic-sidebar {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 320px;
+  height: 100%;
+  background: #fff;
+  border-left: 3px solid #00AEEF;
+  border-radius: 8px 0 0 8px;
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.2);
+  padding: 30px 20px;
+  transition: right 0.3s ease;
+  overflow-y: auto;
+  z-index: 1000;
+}
+.dynamic-sidebar.active {
+  right: 0;
+}
+#close-sidebar {
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+#sidebar-heading {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #00AEEF;
+}
+#sidebar-list {
+  margin-top: 10px;
+  list-style: none;
+  padding-left: 0;
+}
+#sidebar-list li {
+  font-size: 1.1rem;
+  padding: 10px;
+  border-radius: 4px;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+#sidebar-list li:hover {
+  background-color: #f0f0f0;
+}
+
+/* Creative Modal Overlay for Expanded Subsections */
+#fullpage-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.75);
+  display: none;
+  z-index: 2100;
+  overflow-y: auto;
+}
+#fullpage-overlay.active {
+  display: block;
+}
+#fullpage-content {
+  background: #fff;
+  margin: 5% auto;
+  max-width: 960px;
+  border-radius: 10px;
+  overflow: hidden;
+  animation: slideIn 0.5s ease-out;
+  position: relative;
+}
+
+/* Slide-in Animation */
+@keyframes slideIn {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Modal Header with Sticky Close Button */
+.modal-header {
+  background: #ff6600;
+  color: #fff;
+  padding: 15px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+.modal-close {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 20px;
+}
+
+/* Updated Gallery Styles for a "Studio" Look with Lazy Loading */
+#main-image-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+#main-image-display figure {
+  flex: 1 1 150px;
+  max-width: 150px;
+  margin: 0;
+  text-align: center;
+}
+#main-image-display img {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 3px;
+  transition: transform 0.3s;
+}
+#main-image-display img:hover {
+  transform: scale(1.05);
+}
+#main-image-display figcaption {
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+/* Enhanced Microinteractions */
+button {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+button:hover,
+button:focus {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Footer */
+footer {
+  background-color: #1E2A38;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .sections-container {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  body {
+    font-size: 1.1rem;
+  }
+  nav ul {
+    justify-content: flex-start;
+  }
+  nav ul li {
+    margin: 0 10px;
+  }
+}
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    text-align: center;
+  }
+  nav ul li {
+    margin: 10px 0;
+  }
+  .sections-container {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+  #fullpage-overlay {
+    width: 90vw;
+    left: 5vw;
+    top: 5vh;
+  }
+  #admin-panel {
+    width: 90%;
+    right: 5%;
+  }
+  header {
+    padding: 15px;
+  }
+}
+@media (max-width: 480px) {
+  body {
+    font-size: 1rem;
+  }
+  header {
+    font-size: 1.3rem;
+  }
+  .main-section {
+    padding: 10px;
+  }
+  .dynamic-sidebar {
+    width: 80%;
+  }
+}

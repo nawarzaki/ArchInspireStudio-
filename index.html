@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ArchInspireStudio</title>
+  <meta name="description" content="ArchInspireStudio practical project featuring innovative solutions and cutting-edge engineering." />
+  <meta name="keywords" content="engineering, architecture, design, innovative, blog, business" />
+
+  <!-- Organization Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ArchInspireStudio",
+    "url": "http://www.yourdomain.com",
+    "logo": "http://www.yourdomain.com/images/logo.png",
+    "sameAs": [
+      "http://www.facebook.com/yourpage",
+      "http://www.twitter.com/yourpage",
+      "http://www.instagram.com/yourpage"
+    ]
+  }
+  </script>
+
+  <!-- BreadcrumbList Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "http://www.yourdomain.com",
+          "name": "Home"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@id": "http://www.yourdomain.com/section",
+          "name": "Section Details"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Article Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Sample Subsection Article",
+    "image": [
+      "https://via.placeholder.com/800x600?text=Sample-Image"
+    ],
+    "author": {
+      "@type": "Person",
+      "name": "Your Name"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ArchInspireStudio",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "http://www.yourdomain.com/images/logo.png"
+      }
+    },
+    "datePublished": "2025-02-03"
+  }
+  </script>
+
+  <!-- GLightbox CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet" />
+
+  <!-- CKEditor -->
+  <script src="https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/ckeditor.js"></script>
+
+  <!-- Link to External CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Skip Navigation Link for Accessibility -->
+  <a href="#home" class="skip-link">Skip to main content</a>
+
+  <!-- Admin Login Button -->
+  <button id="admin-login-button" aria-label="Open Admin Panel" tabindex="1">Admin</button>
+
+  <!-- Full-Screen Admin Panel -->
+  <div id="admin-panel" class="full-screen-admin" role="dialog" aria-labelledby="admin-panel-header" aria-hidden="true">
+    <div id="admin-panel-header">
+      <span>Admin Panel</span>
+      <button id="admin-close" aria-label="Close Admin Panel" tabindex="2">X</button>
+    </div>
+    <div class="admin-panel-body">
+      <form id="admin-form" aria-labelledby="admin-panel-header" role="form">
+        <label for="admin-section">Section:</label>
+        <select id="admin-section" required aria-describedby="section-description">
+          <option value="section1">Interior Design (Section 1)</option>
+          <option value="section2">Architectural Design (Section 2)</option>
+          <option value="section3">Structural &amp; Construction Engineering (Section 3)</option>
+        </select>
+        <label for="admin-title">Title:</label>
+        <input type="text" id="admin-title" required />
+        <label for="admin-editor">Content:</label>
+        <!-- CKEditor will replace this textarea -->
+        <textarea id="admin-editor"></textarea>
+        <label>Images:</label>
+        <!-- Drag and drop zone for images -->
+        <div id="image-dropzone" class="dropzone">
+          <p>Drag and drop images here or click to select</p>
+          <input type="file" id="admin-images" multiple accept="image/*" style="display:none;">
+        </div>
+        <div id="image-previews"></div>
+        <button type="submit" id="admin-submit" tabindex="3">Add Subsection</button>
+      </form>
+      <!-- Live Preview Container -->
+      <div id="live-preview-container">
+        <h4>Live Preview</h4>
+        <div id="live-preview"></div>
+      </div>
+      <div id="manage-subsections" role="list">
+        <h4>Manage Subsections</h4>
+        <div id="manage-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <h1>ArchInspireStudio</h1>
+    <p>Innovating the future with exceptional solutions.</p>
+  </header>
+
+  <!-- Navigation -->
+  <nav aria-label="Main Navigation">
+    <ul>
+      <li><a href="#home" tabindex="5">Home</a></li>
+      <li><a href="#services" tabindex="6">Services</a></li>
+      <li><a href="#blog" tabindex="7">Blog</a></li>
+      <li><a href="#testimonials" tabindex="8">Testimonials</a></li>
+      <li><a href="#contact" tabindex="9">Contact</a></li>
+      <li><a href="#newsletter" tabindex="10">Newsletter</a></li>
+    </ul>
+  </nav>
+
+  <!-- Global Search -->
+  <section id="global-search-section">
+    <label for="global-search" class="visually-hidden">Search for content</label>
+    <input type="text" id="global-search" placeholder="Search..." aria-label="Global Search" tabindex="11" />
+    <ul id="search-suggestions" aria-live="polite"></ul>
+  </section>
+
+  <!-- Main Content -->
+  <main id="home" aria-labelledby="home-heading">
+    <h2 id="home-heading">Main Sections</h2>
+    <div class="sections-container">
+      <div class="main-section" data-section="section1" tabindex="12">
+        <h3>Interior Design</h3>
+        <p>Explore our modern interior design ideas and layouts.</p>
+      </div>
+      <div class="main-section" data-section="section2" tabindex="13">
+        <h3>Architectural Design</h3>
+        <p>Discover innovative architectural designs and structures.</p>
+      </div>
+      <div class="main-section" data-section="section3" tabindex="14">
+        <h3>Structural &amp; Construction Engineering</h3>
+        <p>Learn about structural integrity and advanced construction methods.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Dynamic Sidebar (lists only subsection titles) -->
+  <aside id="dynamic-sidebar" class="dynamic-sidebar" aria-labelledby="sidebar-heading" role="navigation" aria-hidden="true">
+    <button id="close-sidebar" aria-label="Close Sidebar" tabindex="15">&times;</button>
+    <h3 id="sidebar-heading">Subsections</h3>
+    <ul id="sidebar-list"></ul>
+  </aside>
+
+  <!-- Creative Modal Overlay for Expanded Subsection -->
+  <div id="fullpage-overlay" role="dialog" aria-modal="true" aria-labelledby="fullpage-heading" aria-hidden="true">
+    <div id="fullpage-content"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 ArchInspireStudio. All rights reserved.</p>
+  </footer>
+
+  <!-- Load SortableJS for drag-and-drop reordering -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+  <!-- GLightbox JS -->
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  <!-- Link to External JS -->
+  <script src="script.js"></script>
+</body>
+</html>
