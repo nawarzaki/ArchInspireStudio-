@@ -1,3 +1,144 @@
+
+const API_BASE = 'https://archinspire-backend.onrender.com';
+let jwtToken = ''; // Will store JWT after login
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('admin-form');
+  const imageInput = document.getElementById('admin-images');
+  const dropzone = document.getElementById('image-dropzone');
+  const previewContainer = document.getElementById('image-previews');
+
+  const loginModal = document.getElementById('login-modal');
+  const loginBtn = document.getElementById('admin-login-button');
+  const loginSubmit = document.getElementById('login-submit');
+  const loginError = document.getElementById('login-error');
+
+  let editor;
+  ClassicEditor.create(document.querySelector('#admin-editor'))
+    .then(newEditor => { editor = newEditor; })
+    .catch(error => console.error(error));
+
+  // Admin Login Button Click → Open Login Modal
+  loginBtn.addEventListener('click', () => {
+    loginModal.style.display = 'block';
+  });
+
+  // Login Submission
+  loginSubmit.addEventListener('click', async () => {
+    const username = document.getElementById('login-username').value;
+    const password = document.getElementById('login-password').value;
+
+    const res = await fetch(`${API_BASE}/api/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password })
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      jwtToken = data.token;
+      loginModal.style.display = 'none';
+      loginError.textContent = '';
+      loadSubsections();
+      alert('Login successful!');
+    } else {
+      loginError.textContent = 'Invalid credentials. Try again.';
+    }
+  });
+
+  // Submit Admin Form
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const section = document.getElementById('admin-section').value;
+    const title = document.getElementById('admin-title').value;
+    const content = editor.getData();
+    const images = Array.from(document.querySelectorAll('.preview img')).map(img => img.src);
+
+    const res = await fetch(`${API_BASE}/api/posts`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${jwtToken}`
+      },
+      body: JSON.stringify({ section, title, content, images })
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      alert('Subsection saved!');
+      form.reset();
+      editor.setData('');
+      previewContainer.innerHTML = '';
+      loadSubsections();
+    } else {
+      alert('Error saving subsection: ' + data.error);
+    }
+  });
+
+  // Image Upload Handling
+  imageInput.addEventListener('change', handleImageUpload);
+  dropzone.addEventListener('click', () => imageInput.click());
+  dropzone.addEventListener('dragover', e => {
+    e.preventDefault();
+    dropzone.classList.add('dragover');
+  });
+  dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+  dropzone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropzone.classList.remove('dragover');
+    imageInput.files = e.dataTransfer.files;
+    handleImageUpload({ target: imageInput });
+  });
+
+  async function handleImageUpload(event) {
+    const files = event.target.files;
+    for (const file of files) {
+      const formData = new FormData();
+      formData.append('image', file);
+
+      const res = await fetch(`${API_BASE}/api/upload`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${jwtToken}` },
+        body: formData
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        const div = document.createElement('div');
+        div.className = 'preview';
+        div.innerHTML = `
+          <img src="${data.imageUrl}" alt="Uploaded">
+          <div class="figcaption-inputs">
+            <input type="text" placeholder="Caption">
+            <input type="color" value="#000000">
+          </div>`;
+        previewContainer.appendChild(div);
+      } else {
+        alert("Image upload failed.");
+      }
+    }
+  }
+
+  async function loadSubsections() {
+    const res = await fetch(`${API_BASE}/api/posts`);
+    const data = await res.json();
+    const manageList = document.getElementById('manage-list');
+    manageList.innerHTML = '';
+
+    data.forEach(post => {
+      const div = document.createElement('div');
+      div.className = 'preview';
+      div.innerHTML = `
+        <strong>${post.title}</strong>
+        <p>Section: ${post.section}</p>
+        <div>${post.content.slice(0, 100)}...</div>
+      `;
+      manageList.appendChild(div);
+    });
+  }
+});
+
+
 document.addEventListener("DOMContentLoaded", () => {
   // Element References
   const adminLoginButton = document.getElementById("admin-login-button");
