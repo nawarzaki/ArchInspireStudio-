@@ -1,6 +1,7 @@
 
 const API_BASE = 'https://archinspirestudio-backend.onrender.com';
 
+
 let jwtToken = ''; // Will store JWT after login
 
 document.addEventListener('DOMContentLoaded', () => {
