@@ -14,6 +14,8 @@ const PORT = process.env.PORT || 10000;
 const MONGODB_URI = process.env.MONGODB_URI;
 const JWT_SECRET = process.env.JWT_SECRET;
 
+
+
 // CORS configuration
 const allowedOrigins = ['https://nawarzaki.github.io'];
 app.use(cors({
@@ -24,6 +26,20 @@ app.use(cors({
     callback(new Error('Not allowed by CORS'));
   }
 }));
+
+// Handle preflight requests globally
+app.options('*', cors());
+
+const corsOptions = {
+  origin: 'https://nawarzaki.github.io',
+  credentials: true,
+};
+app.use(cors(corsOptions));
+
+// Handle preflight (OPTIONS) globally
+app.options('*', cors(corsOptions));
+
+
 
 // Middlewares
 app.use(express.json());
