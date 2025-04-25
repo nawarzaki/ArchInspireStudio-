@@ -1,5 +1,6 @@
 
-const API_BASE = 'https://archinspirestudio-backend.onrender.com';
+const API_BASE = 'https://archinspirestudio-api.onrender.com';
+
 
 
 
