@@ -1,6 +1,5 @@
 
-const API_BASE = 'https://archinspirestudio-backend-nawarzaki.onrender.com';
-
+const API_BASE = 'https://archinspirestudio-backend.onrender.com';
 
 let jwtToken = ''; // Will store JWT after login
 
