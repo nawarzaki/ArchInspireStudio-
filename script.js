@@ -26,5 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error(error);
       }
     });
+  } else {
+    console.log('Login button not found — normal for homepage.');
   }
 });
