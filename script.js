@@ -17,9 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!res.ok) {
           throw new Error('Login failed');
         }
+        
+const data = await res.json();
+localStorage.setItem('token', data.token);
+window.location.href = 'admin-dashboard.html';
 
-        const data = await res.json();
-        window.location.href = 'admin-dashboard.html';
+      
+       
       } catch (error) {
         alert('Login failed. Please try again.');
         console.error(error);
