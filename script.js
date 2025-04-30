@@ -19,15 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const data = await res.json();
-        localStorage.setItem('token', data.token);
-        window.location.href = 'admin.html';
-
+        alert('Login successful! Redirecting...');
+        // Replace with actual redirect or admin panel logic
       } catch (error) {
         alert('Login failed. Please try again.');
         console.error(error);
       }
     });
   } else {
-    console.log('Login button not found — normal for homepage.');
+    console.log('Login button not found — normal if not on admin page.');
   }
 });
