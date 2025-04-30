@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const data = await res.json();
         localStorage.setItem('token', data.token);
-        window.location.href = '/admin.html';
+        window.location.href = 'admin.html';
+
       } catch (error) {
         alert('Login failed. Please try again.');
         console.error(error);
