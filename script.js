@@ -19,8 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const data = await res.json();
-        alert('Login successful! Redirecting...');
-        // Replace with actual redirect or admin panel logic
+        window.location.href = 'admin-dashboard.html';
       } catch (error) {
         alert('Login failed. Please try again.');
         console.error(error);
