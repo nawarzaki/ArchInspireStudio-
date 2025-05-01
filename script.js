@@ -1,4 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Now the DOM is fully loaded, and elements are available
+  const adminLoginButton = document.getElementById("admin-login-button");
+  if (adminLoginButton) {
+    adminLoginButton.addEventListener("click", () => {
+      document.getElementById("admin-panel").setAttribute("aria-hidden", "false");
+    });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
   // Element References
   const adminLoginButton = document.getElementById("admin-login-button");
   const adminPanel = document.getElementById("admin-panel");
