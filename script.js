@@ -1,16 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Now the DOM is fully loaded, and elements are available
   const adminLoginButton = document.getElementById("admin-login-button");
-  if (adminLoginButton) {
-    adminLoginButton.addEventListener("click", () => {
-      document.getElementById("admin-panel").setAttribute("aria-hidden", "false");
-    });
-  }
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  // Element References
-  const adminLoginButton = document.getElementById("admin-login-button");
   const adminPanel = document.getElementById("admin-panel");
   const adminClose = document.getElementById("admin-close");
   const adminForm = document.getElementById("admin-form");
@@ -44,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .then(editor => {
       editorInstance = editor;
+      // Live Preview: update on change
       editor.model.document.on('change:data', () => {
         document.getElementById("live-preview").innerHTML = editorInstance.getData();
       });
@@ -53,9 +44,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
   // Show/Hide Admin Panel
-  adminLoginButton.addEventListener("click", () => {
-    adminPanel.setAttribute("aria-hidden", "false");
-  });
+  if (adminLoginButton) {
+    adminLoginButton.addEventListener("click", () => {
+      adminPanel.setAttribute("aria-hidden", "false");
+    });
+  }
+
   adminClose.addEventListener("click", () => {
     adminPanel.setAttribute("aria-hidden", "true");
     resetAdminForm();
@@ -65,15 +59,19 @@ document.addEventListener("DOMContentLoaded", () => {
   imageDropzone.addEventListener("click", () => {
     adminImagesInput.click();
   });
+
   adminImagesInput.addEventListener("change", handleFiles);
+  
   imageDropzone.addEventListener("dragover", (e) => {
     e.preventDefault();
     imageDropzone.classList.add("dragover");
   });
+  
   imageDropzone.addEventListener("dragleave", (e) => {
     e.preventDefault();
     imageDropzone.classList.remove("dragover");
   });
+
   imageDropzone.addEventListener("drop", (e) => {
     e.preventDefault();
     imageDropzone.classList.remove("dragover");
