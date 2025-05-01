@@ -6,6 +6,7 @@
   <title>ArchInspireStudio</title>
   <meta name="description" content="ArchInspireStudio practical project featuring innovative solutions and cutting-edge engineering." />
   <meta name="keywords" content="engineering, architecture, design, innovative, blog, business" />
+  <link rel="icon" href="path/to/favicon.ico" type="image/x-icon">
 
   <!-- Organization Structured Data -->
   <script type="application/ld+json">
@@ -84,11 +85,10 @@
 <body>
   <!-- Skip Navigation Link for Accessibility -->
   <a href="#home" class="skip-link">Skip to main content</a>
-<button id="admin-login-button" aria-label="Open Admin Panel">Admin</button>
 
   <!-- Admin Login Button -->
-  <a href="admin.html" id="adminBtn" style="text-decoration: none; font-size: 18px; padding: 10px 20px; background: #333; color: white; border-radius: 5px;">Admin</a>
-
+  <!-- Remove this line -->
+<a href="admin.html" id="adminBtn" style="text-decoration: none; font-size: 18px; padding: 10px 20px; background: #333; color: white; border-radius: 5px;">Admin</a>
 
   <!-- Full-Screen Admin Panel -->
   <div id="admin-panel" class="full-screen-admin" role="dialog" aria-labelledby="admin-panel-header" aria-hidden="true">
@@ -210,8 +210,11 @@
     <p id="login-error" style="color: red; margin-top: 10px;"></p>
   </div>
 </div>
-  <!-- CKEditor -->
-  <script src="https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/ckeditor.js"></script>
+ <!-- Load CKEditor -->
+<script src="https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/ckeditor.js"></script>
+
+<!-- Link to your custom JS file -->
 <script src="script.js"></script>
+
 </body>
 </html>
